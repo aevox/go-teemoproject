@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -xe
+
+
+apt-get update
+apt-get --yes upgrade
+apt-get --yes install wget
+
+wget https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
+apt --yes install ./wkhtmltox_0.12.5-1.bionic_amd64.deb
+mkdir /var/go-teemoproject
+
+
+rm wkhtmltox_0.12.5-1.bionic_amd64.deb
+apt-get --yes purge --autoremove wget
+apt-get clean

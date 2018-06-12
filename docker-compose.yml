@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+    redis:
+        hostname: redis
+        image: redis:latest
+        ports:
+            - "6379:6379"
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - /tmp/go-teemoproject:/var/go-teemoproject
+        links:
+            - redis
+        depends_on:
+            - redis
+        environment:
+            - REDIS_ADDRESS=redis:6379
